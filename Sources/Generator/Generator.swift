@@ -26,4 +26,8 @@ open class Generator {
     public init(sections: [(AnyObject)->AnyObject]) {
         self.sections = sections
     }
+    
+    public func fire() -> GeneratorIterator {
+        return GeneratorIterator(handlers: sections)
+    }
 }
