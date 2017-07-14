@@ -52,7 +52,7 @@ extension GeneratorIterator: Collection {
         return i + 1
     }
     
-    public subscript (position: Int) -> (AnyObject)->AnyObject {
+    public subscript (position: Int) -> (AnyObject?)->AnyObject {
         return handlers[position]
     }
 }
