@@ -31,7 +31,7 @@ open class GeneratorIterator {
     public func next(argument: AnyObject? = nil) -> GeneratorResult {
         if currentHandler < handlers.count {
             defer { currentHandler += 1 }
-            let handlerResult = handlers[currentHandler](argument)
+            let handlerResult = self[currentHandler](argument)
             return GeneratorResult(value: handlerResult, done: false)
         } else {
             return GeneratorResult(value: nil, done: true)
