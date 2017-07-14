@@ -45,3 +45,9 @@ extension GeneratorIterator: Collection {
         return handlers[position]
     }
 }
+
+extension GeneratorIterator: BidirectionalCollection {
+    public func index(before i: Int) -> Int {
+        return i - 1
+    }
+}
