@@ -20,3 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+open class Generator {
+    public let sections: [(AnyObject)->AnyObject]
+    
+    public init(sections: [(AnyObject)->AnyObject]) {
+        self.sections = sections
+    }
+}
