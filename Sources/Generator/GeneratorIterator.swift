@@ -21,5 +21,9 @@
 // SOFTWARE.
 
 open class GeneratorIterator {
+    public let handlers: [(AnyObject)->AnyObject]
     
+    public init(handlers: [(AnyObject)->AnyObject]) {
+        self.handlers = handlers
+    }
 }
