@@ -20,6 +20,49 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+import Foundation
+
 class MultiTypedArray {
+    private(set) var elements: [(Any, Any.Type)] = []
     
+    func add<T>(_ element: T) {
+        self.elements.append((element as Any, type(of: element)))
+    }
+    
+    func type(at position: Int) -> Any.Type {
+        return elements[position].1
+    }
+}
+
+
+extension MultiTypedArray: Collection {
+    var startIndex: Int {
+        return 0
+    }
+    
+    var endIndex: Int {
+        return elements.count - 1
+    }
+    
+    func index(after i: Int) -> Int {
+        return i + 1
+    }
+    
+    subscript (position: Int) -> Any {
+        return elements[position].0
+    }
+}
+
+extension MultiTypedArray: BidirectionalCollection {
+    func index(before i: Int) -> Int {
+        return i - 1
+    }
+}
+
+extension MultiTypedArray: RandomAccessCollection {}
+
+extension MultiTypedArray: CustomStringConvertible {
+    var description: String {
+        return "[" + elements.map({ element, type in return "\(element)"}).joined(separator: ", ") + "]"
+    }
 }
