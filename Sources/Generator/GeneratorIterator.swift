@@ -51,3 +51,5 @@ extension GeneratorIterator: BidirectionalCollection {
         return i - 1
     }
 }
+
+extension GeneratorIterator: RandomAccessCollection {}
