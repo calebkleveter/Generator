@@ -22,6 +22,7 @@
 
 open class GeneratorIterator {
     public let handlers: [(AnyObject?)->AnyObject]
+    public private(set) var currentHandler: Int = 0
     
     public init(handlers: [(AnyObject?)->AnyObject]) {
         self.handlers = handlers
