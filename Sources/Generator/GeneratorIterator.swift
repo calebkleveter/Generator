@@ -20,6 +20,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+public enum GeneratorIteratorError: Error {
+    case custom(String)
+}
+
 open class GeneratorIterator {
     public let handlers: [(AnyObject?)->AnyObject]
     public private(set) var currentHandler: Int = 0
@@ -28,7 +32,7 @@ open class GeneratorIterator {
         self.handlers = handlers
     }
     
-    public func next(argument: AnyObject? = nil) -> GeneratorResult {
+    public func next(_ argument: AnyObject? = nil) -> GeneratorResult {
         if currentHandler < handlers.count {
             defer { currentHandler += 1 }
             let handlerResult = self[currentHandler](argument)
@@ -36,6 +40,16 @@ open class GeneratorIterator {
         } else {
             return GeneratorResult(value: nil, done: true)
         }
+    }
+    
+    public func `return`(_ argument: AnyObject? = nil) -> GeneratorResult {
+        currentHandler = handlers.count
+        return GeneratorResult(value: argument, done: true)
+    }
+    
+    public func `throw`(_ message: String)throws {
+        currentHandler = handlers.count
+        throw GeneratorIteratorError.custom(message)
     }
 }
 
