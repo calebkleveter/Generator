@@ -22,39 +22,39 @@
 
 import Foundation
 
-class MultiTypedArray {
-    private(set) var elements: [(Any, Any.Type)] = []
+public class MultiTypedArray {
+    public private(set) var elements: [(Any, Any.Type)] = []
     
-    func add<T>(_ element: T) {
+    public func add<T>(_ element: T) {
         self.elements.append((element as Any, type(of: element)))
     }
     
-    func type(at position: Int) -> Any.Type {
+    public func type(at position: Int) -> Any.Type {
         return elements[position].1
     }
 }
 
 
 extension MultiTypedArray: Collection {
-    var startIndex: Int {
+    public var startIndex: Int {
         return 0
     }
     
-    var endIndex: Int {
+    public var endIndex: Int {
         return elements.count - 1
     }
     
-    func index(after i: Int) -> Int {
+    public func index(after i: Int) -> Int {
         return i + 1
     }
     
-    subscript (position: Int) -> Any {
+    public subscript (position: Int) -> Any {
         return elements[position].0
     }
 }
 
 extension MultiTypedArray: BidirectionalCollection {
-    func index(before i: Int) -> Int {
+    public func index(before i: Int) -> Int {
         return i - 1
     }
 }
@@ -62,7 +62,7 @@ extension MultiTypedArray: BidirectionalCollection {
 extension MultiTypedArray: RandomAccessCollection {}
 
 extension MultiTypedArray: CustomStringConvertible {
-    var description: String {
+    public var description: String {
         return "[" + elements.map({ element, type in return "\(element)"}).joined(separator: ", ") + "]"
     }
 }
