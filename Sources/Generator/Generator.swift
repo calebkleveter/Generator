@@ -21,9 +21,9 @@
 // SOFTWARE.
 
 open class Generator {
-    public let sections: [(AnyObject)->AnyObject]
+    public let sections: [(AnyObject?)->AnyObject]
     
-    public init(sections: [(AnyObject)->AnyObject]) {
+    public init(sections: [(AnyObject?)->AnyObject]) {
         self.sections = sections
     }
     
